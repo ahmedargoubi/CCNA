@@ -7,17 +7,8 @@ Each topic is presented in a dedicated `.md` file with explanations, examples, a
 
 ## 📂 Topics Covered
 
-- [Networking Fundamentals](./Networking_Fundamentals.md)
-- [IP Addressing & Subnetting](./IP_Addressing_Subnetting.md)
-- [Switching Concepts (VLANs, Trunking, STP)](./Switching.md)
-- [Routing (Static, Dynamic, OSPF, EIGRP)](./Routing.md)
-- [DHCP](./DHCP.md)
-- [NAT and ACLs](./NAT_ACLs.md)
-- [WAN and VPN](./WAN_VPN.md)
-- [Wireless Security](./Wireless_Security.md)
-- [QoS and Automation Basics](./QoS_Automation.md)
-- [Security Fundamentals](./Security.md)
-- [Troubleshooting & Best Practices](./Troubleshooting.md)
+- [DHCP](Topics/DHCP.md)
+
 
 ---
 
