@@ -95,3 +95,8 @@ Router(config-if)# ip helper-address 10.1.1.10
 - Understand the **DORA process** very well.  
 - Know all essential commands and `ip helper-address` usage.  
 - Be ready for troubleshooting scenarios in simulations.
+
+
+## 📝 Related Quiz
+
+- [DHCP Quiz](./quiz/DHCP_Quiz.md)
