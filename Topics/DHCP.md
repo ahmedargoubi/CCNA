@@ -99,4 +99,4 @@ Router(config-if)# ip helper-address 10.1.1.10
 
 ## 📝 Related Quiz
 
-- [DHCP Quiz](./quiz/DHCP_Quiz.md)
+- [DHCP Quiz](quiz/DHCP_Quiz.md)
