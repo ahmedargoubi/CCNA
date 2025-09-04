@@ -15,14 +15,7 @@ Upon completion of this lab, you will be able to:
 - Configure dynamic NAT with a pool of addresses
 - Configure NAT overload (PAT)
 
-## Network Topology
 
-```
-[PC1] ---- Fa0/0 [R1] S0/0/0 ---- S0/0/0 [R2] S0/0/1 ---- S0/0/1 [ISP]
-[PC2] ---- Fa0/1                            Fa0/0
-                                              |
-                                          [Server]
-```
 
 ## Addressing Table
 
@@ -157,20 +150,9 @@ R2(dhcp-config)# default-router 192.168.11.1
 R2(dhcp-config)# exit
 ```
 
-### Step 3: Configure DHCP Helper Address on R1
 
-Since DHCP clients are on different subnets than the DHCP server, configure helper addresses:
 
-```cisco
-R1(config)# interface fa0/0
-R1(config-if)# ip helper-address 10.1.1.2
-R1(config-if)# exit
-R1(config)# interface fa0/1
-R1(config-if)# ip helper-address 10.1.1.2
-R1(config-if)# exit
-```
-
-### Step 4: Verify DHCP Configuration
+### Step 3: Verify DHCP Configuration
 
 Use these commands to verify DHCP operation:
 
