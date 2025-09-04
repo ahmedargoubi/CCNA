@@ -305,7 +305,6 @@ R2# show ip nat statistics
 ## Troubleshooting Tips
 
 ### DHCP Issues:
-- Verify helper-address configuration on R1
 - Check DHCP pool configuration
 - Ensure excluded-address ranges are correct
 - Use debug commands to trace DHCP messages
