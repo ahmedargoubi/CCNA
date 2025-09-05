@@ -16,14 +16,7 @@ Upon completion of this lab, you will be able to:
 - Test and verify configurations
 - Document the network implementation
 
-## Network Topology
 
-```
-[PC1] ---- Fa0/0 [BRANCH] S0/0/0 ---- S0/0/0 [HQ] S0/0/1 ---- S0/0/1 [ISP] Fa0/0 ---- [Web Server]
-                                                Fa0/0
-                                                 |
-                                               [PC2]
-```
 
 ## Final Addressing Table
 
