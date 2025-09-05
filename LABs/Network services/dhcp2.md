@@ -12,15 +12,6 @@ Upon completion of this lab, you will be able to:
 - Configure a router as a DHCP client
 - Verify DHCP operation and connectivity
 
-## Network Topology
-
-```
-[PC1] ---- G0/0 [R1] S0/0/0 ---- S0/0/0 [R2] S0/0/1 ---- S0/0/1 [R3] G0/0 ---- [PC2]
-                                         G0/0    G0/1
-                                          |       |
-                                   [DNS Server] [ISP/Internet]
-```
-
 ## Addressing Table
 
 | Device | Interface | IPv4 Address | Subnet Mask | Default Gateway |
