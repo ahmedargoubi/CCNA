@@ -26,15 +26,7 @@
 ### Background
 A router uses a routing table to determine where to send packets. Initially, the routing table contains only directly connected networks. To communicate with distant networks, routes must be manually configured and added to the routing table.
 
-## Topology and Addressing
 
-### Network Topology
-```
-PC-A ---- R1 ---- R3 ---- PC-C
-          |       |
-          |       Lo0 (209.165.200.225/27)
-          |       Lo1 (198.133.219.1/24)
-```
 
 ### Addressing Table
 | Device | Interface | IP Address | Subnet Mask | Default Gateway |
