@@ -685,10 +685,4 @@ This lab demonstrates essential skills for secure network device management:
 - **Multi-user Environments:** Controlled access with user accountability
 - **Security Compliance:** Meeting industry standards for remote access
 
-### Next Steps
-- Explore external authentication systems (RADIUS/TACACS+)
-- Implement certificate-based SSH authentication
-- Configure SSH for file transfers (SCP/SFTP)
-- Study advanced SSH security features and monitoring
-
 This comprehensive guide provides the foundation for implementing secure remote access to network devices using SSH protocol.
