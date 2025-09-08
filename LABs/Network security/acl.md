@@ -4,11 +4,7 @@
 
 This lab focuses on implementing network security through Access Control Lists (ACLs) in a multi-router topology. You'll learn to configure, apply, and verify both numbered and named standard ACLs to control traffic flow between different network segments.
 
-## Topology
 
-```
-PC-A ---- S1 ---- R1 ---- ISP ---- R3 ---- S3 ---- PC-C
-```
 
 ## Addressing Table
 
