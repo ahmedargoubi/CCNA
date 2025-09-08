@@ -4,11 +4,7 @@
 
 This lab demonstrates the configuration and implementation of Extended Access Control Lists (ACLs) which provide granular control over network traffic. Unlike standard ACLs that only filter on source addresses, extended ACLs can filter based on source/destination addresses, protocols, and port numbers.
 
-## Topology
 
-```
-PC-A ---- S1 ---- R1 ---- ISP ---- R3 ---- S3 ---- PC-C
-```
 
 ## Addressing Table
 
@@ -280,7 +276,7 @@ R3(config-router)# exit
 ```cisco
 R1(config)# access-list 100 remark Allow Web & SSH Access
 R1(config)# access-list 100 permit tcp host 192.168.10.3 host 10.2.2.1 eq 22
-R1(config)# access-list 100 permit tcp any any eq 80
+R1(config)# access-list 100 permit tcp 192.168.10.0 0.0.0.255 any eq 80
 ```
 
 **Understanding the commands:**
