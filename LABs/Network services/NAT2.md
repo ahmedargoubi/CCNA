@@ -8,25 +8,6 @@
 - Configure and verify PAT (Port Address Translation) with pool and interface overload
 - Configure and verify Static NAT for server access
 
-### Topology Diagram
-```
-Internet (Simulated)
-         |
-    [R2] Lo1: 209.165.200.1/27
-         |
-         | G0/0/0: 209.165.200.225/29
-         |
-         | G0/0/0: 209.165.200.230/29  
-    [R1 - Gateway]
-         |
-         | G0/0/1: 192.168.1.1/24
-         |
-    [S1]-----[S2]
-  192.168.1.11  192.168.1.12
-    |             |
-  PC-A         PC-B
-192.168.1.2   192.168.1.3
-```
 
 ### Addressing Table
 | Device | Interface | IP Address | Subnet Mask |
