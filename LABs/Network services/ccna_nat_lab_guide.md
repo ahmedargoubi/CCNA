@@ -8,23 +8,7 @@
 - Configure and verify Dynamic NAT (many-to-many mapping from a pool)
 - Understand NAT operation and troubleshooting
 
-### Topology Diagram
-```
-Internet
-   |
-[ISP Router] - S0/0/0 (DCE) - 209.165.201.17/30
-   |                          Lo0: 192.31.7.1/32
-   |
-   |
-S0/0/1 - 209.165.201.18/30
-[Gateway Router]
-G0/1 - 192.168.1.1/24
-   |
-[Switch]
-   |    \
-PC-A    PC-B
-.20     .21
-```
+
 
 ### Addressing Table
 | Device | Interface | IP Address | Subnet Mask | Default Gateway |
