@@ -5,13 +5,6 @@
 
 This lab demonstrates the fundamental concepts of Spanning Tree Protocol (STP) IEEE 802.1D, including root bridge election, port states, and topology change responses.
 
-## Network Topology
-```
-    PC1 ──── S1 ──── S2 ──── PC2
-             │  \   /  │     PC3
-             │   \ /   │     PC4
-             └──── S3 ──┘
-```
 
 ## Equipment Required
 - 3 Cisco Switches (2960 or similar)
