@@ -8,16 +8,7 @@ This lab addresses a common network issue: congested trunks in a redundant switc
 - **Cause**: Only 3 out of 6 configured trunks are forwarding traffic
 - **Solution**: Implement per-VLAN load balancing using PVST+
 
-## Network Topology
-```
-       S1 (Root varies by VLAN)
-      /  \
-     /    \
-   S2------S3
-    \      /
-     \    /
-   PC1-PC2-PC3
-```
+
 
 ## Addressing Table
 
