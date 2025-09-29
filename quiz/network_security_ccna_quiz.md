@@ -1,9 +1,9 @@
 # Network Security Fundamentals CCNA Quiz - 15 Questions
-## Most Repeated Questions in CCNA 200-301 Exams
+
 
 ---
 
-### Question 1 ⭐ (ALWAYS appears)
+### Question 1 
 Which three types of malware are commonly found in networks? (Choose three)
 
 A) Viruses  
@@ -15,7 +15,7 @@ F) Port scanning
 
 ---
 
-### Question 2 ⭐ (ALWAYS appears)
+### Question 2
 What are the four main types of network threats that can affect an organization?
 
 A) Hardware, software, environmental, maintenance  
@@ -25,7 +25,7 @@ D) Internal, external, accidental, intentional
 
 ---
 
-### Question 3 ⭐ (ALWAYS appears)
+### Question 3 
 A network administrator wants to automatically configure security settings on a Cisco router. Which command should be used?
 
 A) `security auto-config`  
@@ -35,7 +35,7 @@ D) `router secure`
 
 ---
 
-### Question 4 ⭐ (ALWAYS appears)
+### Question 4 
 What is the main difference between a DoS attack and a DDoS attack?
 
 A) DoS uses malware, DDoS uses social engineering  
@@ -45,7 +45,7 @@ D) DoS is internal, DDoS is external
 
 ---
 
-### Question 5 ⭐ (ALWAYS appears)
+### Question 5 
 Which security approach uses multiple layers of protection to defend against threats?
 
 A) Single point of failure  
@@ -55,7 +55,7 @@ D) Access control
 
 ---
 
-### Question 6 ⭐ (ALWAYS appears)
+### Question 6 
 What is the primary purpose of a DMZ (Demilitarized Zone) in network security?
 
 A) To isolate internal networks from each other  
@@ -65,7 +65,7 @@ D) To monitor employee internet usage
 
 ---
 
-### Question 7 ⭐ (ALWAYS appears)
+### Question 7 
 Which command enables password encryption for stored passwords on a Cisco device?
 
 A) `encrypt passwords`  
@@ -75,7 +75,7 @@ D) `enable password encryption`
 
 ---
 
-### Question 8 ⭐ (ALWAYS appears)
+### Question 8 
 What are the three primary categories of vulnerabilities in network security?
 
 A) Hardware, software, firmware  
@@ -85,7 +85,7 @@ D) Physical, logical, administrative
 
 ---
 
-### Question 9 ⭐ (ALWAYS appears)
+### Question 9 
 Which type of attack involves intercepting communications between two parties without their knowledge?
 
 A) DoS attack  
@@ -95,7 +95,7 @@ D) Dictionary attack
 
 ---
 
-### Question 10 ⭐ (ALWAYS appears)
+### Question 10 
 What does AAA stand for in network security?
 
 A) Access, Authorization, Accounting  
@@ -105,7 +105,7 @@ D) Access, Authentication, Authorization
 
 ---
 
-### Question 11 ⭐ (ALWAYS appears)
+### Question 11 
 Which type of malware can replicate itself across networks without requiring a host program?
 
 A) Virus  
@@ -115,7 +115,7 @@ D) Rootkit
 
 ---
 
-### Question 12 ⭐ (ALWAYS appears)
+### Question 12 
 A network administrator configures the following command on a router:
 ```
 Router(config)# security passwords min-length 10
@@ -129,7 +129,7 @@ D) Allows 10 password attempts before lockout
 
 ---
 
-### Question 13 ⭐ (ALWAYS appears)
+### Question 13 
 Which three reconnaissance attack methods are commonly used by attackers? (Choose three)
 
 A) Ping sweeps  
@@ -141,7 +141,7 @@ F) Cross-site scripting
 
 ---
 
-### Question 14 ⭐ (ALWAYS appears)
+### Question 14 
 What is the main purpose of disabling unnecessary services on network devices?
 
 A) To improve network performance  
@@ -151,7 +151,7 @@ D) To comply with regulations
 
 ---
 
-### Question 15 ⭐ (ALWAYS appears)
+### Question 15 
 Which security technology provides secure remote access by creating encrypted tunnels over public networks?
 
 A) Firewall  
