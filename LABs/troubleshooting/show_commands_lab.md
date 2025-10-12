@@ -79,11 +79,7 @@ ISPRouter# show arp
 **Sample Output**:
 ```
 Protocol  Address          Age (min)  Hardware Addr   Type   Interface
-Internet  10.1.1.1                -   0001.C731.4401  ARPA   GigabitEthernet0/0
-Internet  10.1.1.2                5   0050.0F12.3456  ARPA   GigabitEthernet0/0
-Internet  192.168.1.1             -   0001.C731.4402  ARPA   GigabitEthernet0/1
-Internet  192.168.1.10            3   00D0.BA45.6789  ARPA   GigabitEthernet0/1
-Internet  209.165.200.225         -   0001.C731.4403  ARPA   Serial0/0/0
+Internet  209.165.201.1           -   0030.F275.CE01  ARPA   GigabitEthernet0/0
 ```
 
 **What This Shows**:
@@ -118,11 +114,11 @@ ISPRouter# show flash:
 ```
 System flash directory:
 File  Length   Name/status
-  3   486899376  c2900-universalk9-mz.SPA.151-4.M4.bin
+  3   33591768 c1900-universalk9-mz.SPA.151-4.M4.bin
   2   28282    sigdef-category.xml
   1   227537   sigdef-default.xml
-[486903296 bytes used, 33685504 available, 520588800 total]
-520192K bytes of processor board System flash (Read/Write)
+[33847587 bytes used, 221896413 available, 255744000 total]
+249856K bytes of processor board System flash (Read/Write)
 ```
 
 **What This Shows**:
@@ -132,10 +128,10 @@ File  Length   Name/status
 - **Summary**: Used/available/total space
 
 **Key Information**:
-- IOS image file: `c2900-universalk9-mz.SPA.151-4.M4.bin`
-- Total flash: 520,588,800 bytes (~520 MB)
-- Available: 33,685,504 bytes (~33 MB)
-- Used: 486,903,296 bytes (~487 MB)
+- IOS image file: `c1900-universalk9-mz.SPA.151-4.M4.bin`
+- Total flash: 255744000 (~254 MB)
+- Available: 221896413 bytes (~222 MB)
+- Used: 33847587 bytes (~32 MB)
 
 **File Name Breakdown** (c2900-universalk9-mz.SPA.151-4.M4.bin):
 - **c2900**: Router platform (2900 series)
@@ -170,18 +166,14 @@ Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
        o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
        + - replicated route, % - next hop override
 
-Gateway of last resort is 209.165.200.226 to network 0.0.0.0
+Gateway of last resort is not set
 
-S*    0.0.0.0/0 [1/0] via 209.165.200.226
-      10.0.0.0/8 is variably subnetted, 2 subnets, 2 masks
-C        10.1.1.0/24 is directly connected, GigabitEthernet0/0
-L        10.1.1.1/32 is directly connected, GigabitEthernet0/0
-      192.168.1.0/24 is variably subnetted, 2 subnets, 2 masks
-C        192.168.1.0/24 is directly connected, GigabitEthernet0/1
-L        192.168.1.1/32 is directly connected, GigabitEthernet0/1
-      209.165.200.0/24 is variably subnetted, 2 subnets, 2 masks
-C        209.165.200.224/30 is directly connected, Serial0/0/0
-L        209.165.200.225/32 is directly connected, Serial0/0/0
+     209.165.200.0/24 is variably subnetted, 2 subnets, 2 masks
+C       209.165.200.224/27 is directly connected, Serial0/0/1
+L       209.165.200.226/32 is directly connected, Serial0/0/1
+     209.165.201.0/24 is variably subnetted, 2 subnets, 2 masks
+C       209.165.201.0/27 is directly connected, GigabitEthernet0/0
+L       209.165.201.1/32 is directly connected, GigabitEthernet0/0
 ```
 
 **Understanding the Output**:
@@ -189,30 +181,7 @@ L        209.165.200.225/32 is directly connected, Serial0/0/0
 **Route Codes**:
 - **C** = Connected (directly attached network)
 - **L** = Local (router's own IP address)
-- **S** = Static route (manually configured)
-- **S\*** = Default static route
 
-**Route Entry Breakdown**:
-```
-S*    0.0.0.0/0 [1/0] via 209.165.200.226
-```
-- **S\***: Static default route
-- **0.0.0.0/0**: Default network (matches all destinations)
-- **[1/0]**: [Administrative Distance / Metric]
-- **via 209.165.200.226**: Next-hop IP address
-
-```
-C     10.1.1.0/24 is directly connected, GigabitEthernet0/0
-```
-- **C**: Connected network
-- **10.1.1.0/24**: Network address and prefix
-- **GigabitEthernet0/0**: Exit interface
-
-```
-L     10.1.1.1/32 is directly connected, GigabitEthernet0/0
-```
-- **L**: Local route (router's own IP)
-- **/32**: Host route (single IP address)
 
 **Key Points**:
 - Shows all known networks
@@ -237,36 +206,35 @@ ISPRouter# show interfaces
 
 **Sample Output** (for one interface):
 ```
-GigabitEthernet0/0 is up, line protocol is up
-  Hardware is CN Gigabit Ethernet, address is 0001.c731.4401 (bia 0001.c731.4401)
-  Description: Connection to LAN
-  Internet address is 10.1.1.1/24
-  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec,
+GigabitEthernet0/0 is up, line protocol is up (connected)
+  Hardware is CN Gigabit Ethernet, address is 0030.f275.ce01 (bia 0030.f275.ce01)
+  Internet address is 209.165.201.1/27
+  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec,
      reliability 255/255, txload 1/255, rxload 1/255
   Encapsulation ARPA, loopback not set
   Keepalive set (10 sec)
-  Full Duplex, 1Gbps, media type is RJ45
+  Full-duplex, 100Mb/s, media type is RJ45
   output flow-control is unsupported, input flow-control is unsupported
-  ARP type: ARPA, ARP Timeout 04:00:00
-  Last input 00:00:01, output 00:00:00, output hang never
+  ARP type: ARPA, ARP Timeout 04:00:00, 
+  Last input 00:00:08, output 00:00:05, output hang never
   Last clearing of "show interface" counters never
-  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Input queue: 0/75/0 (size/max/drops); Total output drops: 0
   Queueing strategy: fifo
-  Output queue: 0/40 (size/max)
-  5 minute input rate 1000 bits/sec, 2 packets/sec
-  5 minute output rate 1000 bits/sec, 2 packets/sec
-     1548 packets input, 146548 bytes, 0 no buffer
-     Received 0 broadcasts (0 IP multicasts)
-     0 runts, 0 giants, 0 throttles
-     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+  Output queue :0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts, 0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
      0 watchdog, 1017 multicast, 0 pause input
-     1549 packets output, 146659 bytes, 0 underruns
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
      0 output errors, 0 collisions, 1 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
-     0 lost carrier, 0 no carrier, 0 pause output
+     0 lost carrier, 0 no carrier
      0 output buffer failures, 0 output buffers swapped out
-```
+
 
 **Critical Status Lines**:
 
@@ -284,33 +252,25 @@ GigabitEthernet0/0 is up, line protocol is up
 
 **MAC Address**:
 ```
-address is 0001.c731.4401 (bia 0001.c731.4401)
+address is  0030.f275.ce01
 ```
 - **address**: Current MAC address
 - **bia**: Burned-in address (factory default)
 
 **IP Address**:
 ```
-Internet address is 10.1.1.1/24
+Internet address is  209.165.201.1/27
 ```
 Shows IP and subnet mask in CIDR notation
 
 **Interface Speed**:
 ```
-Full Duplex, 1Gbps, media type is RJ45
+ Full-duplex, 100Mb/s, media type is RJ45
 ```
 - **Duplex**: Full (transmit and receive simultaneously)
-- **Speed**: 1 Gbps (1000 Mbps)
+- **Speed**: 100Mb/s
 - **Media**: RJ45 connector type
 
-**Traffic Statistics**:
-```
-5 minute input rate 1000 bits/sec, 2 packets/sec
-5 minute output rate 1000 bits/sec, 2 packets/sec
-1548 packets input, 146548 bytes
-1549 packets output, 146659 bytes
-```
-Shows traffic load and counters
 
 **Error Counters**:
 ```
@@ -340,19 +300,17 @@ ISPRouter# show ip interface brief
 
 **Sample Output**:
 ```
-Interface              IP-Address      OK? Method Status                Protocol
-GigabitEthernet0/0     10.1.1.1        YES manual up                    up
-GigabitEthernet0/1     192.168.1.1     YES manual up                    up
-GigabitEthernet0/2     unassigned      YES unset  administratively down down
-Serial0/0/0            209.165.200.225 YES manual up                    up
-Serial0/0/1            unassigned      YES unset  administratively down down
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     209.165.201.1   YES manual up                    up 
+GigabitEthernet0/1     unassigned      YES unset  administratively down down 
+Serial0/0/0            unassigned      YES unset  administratively down down 
+Serial0/0/1            209.165.200.226 YES manual up                    up 
 Vlan1                  unassigned      YES unset  administratively down down
 ```
 
 **Column Descriptions**:
 
-**Interface**: Interface name
-- GigabitEthernet0/0 = Gig0/0 = G0/0 (same interface, different notation)
+
 
 **IP-Address**: Assigned IP address
 - "unassigned" = No IP configured
@@ -405,13 +363,11 @@ ISPRouter# show protocols
 Global values:
   Internet Protocol routing is enabled
 GigabitEthernet0/0 is up, line protocol is up
-  Internet address is 10.1.1.1/24
-GigabitEthernet0/1 is up, line protocol is up
-  Internet address is 192.168.1.1/24
-GigabitEthernet0/2 is administratively down, line protocol is down
-Serial0/0/0 is up, line protocol is up
-  Internet address is 209.165.200.225/30
-Serial0/0/1 is administratively down, line protocol is down
+  Internet address is 209.165.201.1/27
+GigabitEthernet0/1 is administratively down, line protocol is down
+Serial0/0/0 is administratively down, line protocol is down
+Serial0/0/1 is up, line protocol is up
+  Internet address is 209.165.200.226/27
 Vlan1 is administratively down, line protocol is down
 ```
 
@@ -444,9 +400,10 @@ ISPRouter# show users
 
 **Sample Output**:
 ```
+  
+ 
     Line       User       Host(s)              Idle       Location
-   0 con 0                idle                 00:00:00   
-*  2 vty 0     admin      idle                 00:00:00 10.1.1.10
+*  0 con 0                idle                 00:00:00 
 
   Interface    User               Mode         Idle     Peer Address
 ```
@@ -470,57 +427,24 @@ ISPRouter# show users
 **Location**: IP address of remote connection
 - Shows where user is connecting from
 
-**Asterisk (\*)**: Current session (your connection)
 
-**Sample Interpretations**:
 
-```
-* 2 vty 0    admin    idle    00:00:00 10.1.1.10
-```
-- This is YOUR current session (*)
-- Connected via SSH/Telnet (vty 0)
-- Username: admin
-- Connected from 10.1.1.10
-- Currently active (00:00:00 idle)
 
-```
-  0 con 0              idle    00:15:32
-```
-- Console connection exists
-- No username shown
-- Idle for 15 minutes, 32 seconds
-- Someone connected but inactive
-
-**Real-World Use**:
-- Check who else is connected to the router
-- Verify your own connection type
-- Identify idle sessions
-- Security audit of active connections
-- Coordinate with other administrators
-
-**Security Note**: If multiple users are connected, coordinate changes to avoid conflicts
-
----
-
-### 8. Show Version
-
-**Command**:
 ```
 ISPRouter# show version
 ```
 
 **Sample Output** (key sections):
 ```
-Cisco IOS Software, C2900 Software (C2900-UNIVERSALK9-M), Version 15.1(4)M4, RELEASE SOFTWARE (fc2)
+Cisco IOS Software, C1900 Software (C1900-UNIVERSALK9-M), Version 15.1(4)M4, RELEASE SOFTWARE (fc2)
 Technical Support: http://www.cisco.com/techsupport
-Copyright (c) 1986-2012 by Cisco Systems, Inc.
-Compiled Thurs 5-Jan-12 15:41 by pt_team
+Copyright (c) 1986-2007 by Cisco Systems, Inc.
+Compiled Wed 23-Feb-11 14:19 by pt_team
 
-ROM: System Bootstrap, Version 15.0(1r)M15, RELEASE SOFTWARE (fc1)
-
-ISPRouter uptime is 1 hour, 23 minutes
+ROM: System Bootstrap, Version 15.1(4)M4, RELEASE SOFTWARE (fc1)
+cisco1941 uptime is 48 minutes, 33 seconds
 System returned to ROM by power-on
-System image file is "flash0:c2900-universalk9-mz.SPA.151-4.M4.bin"
+System image file is "flash0:c1900-universalk9-mz.SPA.151-1.M4.bin"
 Last reload type: Normal Reload
 
 This product contains cryptographic features and is subject to United
@@ -537,18 +461,36 @@ http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
 
 If you require further assistance please contact us by sending email to
 export@cisco.com.
-
-Cisco CISCO2911/K9 (revision 1.0) with 491520K/32768K bytes of memory.
+Cisco CISCO1941/K9 (revision 1.0) with 491520K/32768K bytes of memory.
 Processor board ID FTX152400KS
-3 Gigabit Ethernet interfaces
-2 Serial interfaces
-1 terminal line
-1 Virtual Private Network (VPN) Module
+2 Gigabit Ethernet interfaces
+2 Low-speed serial(sync/async) network interface(s)
 DRAM configuration is 64 bits wide with parity disabled.
 255K bytes of non-volatile configuration memory.
-500880K bytes of ATA System CompactFlash 0 (Read/Write)
+249856K bytes of ATA System CompactFlash 0 (Read/Write)
+
+License Info:
+
+License UDI:
+
+-------------------------------------------------
+Device#   PID                   SN
+-------------------------------------------------
+*0        CISCO1941/K9          FTX152404S8
+
+
+Technology Package License Information for Module:'c1900'
+
+----------------------------------------------------------------
+Technology    Technology-package          Technology-package
+              Current       Type          Next reboot
+-----------------------------------------------------------------
+ipbase        ipbasek9      Permanent     ipbasek9
+security      disable       None          None
+data          disable       None          None
 
 Configuration register is 0x2102
+
 ```
 
 **Critical Information to Extract**:
@@ -564,58 +506,13 @@ Version 15.1(4)M4, RELEASE SOFTWARE (fc2)
 
 **Hardware Platform**:
 ```
-Cisco CISCO2911/K9 (revision 1.0)
+Cisco CISCO1941/K9 (revision 1.0)
 ```
-- **2911**: Router model
+- **1941**: Router model
 - **K9**: Contains cryptography features
 - **revision 1.0**: Hardware revision
 
-**Memory Information**:
-```
-491520K/32768K bytes of memory
-```
-- **491520K** = 491 MB RAM
-- **32768K** = 32 MB NVRAM (approximately)
 
-**Interfaces Available**:
-```
-3 Gigabit Ethernet interfaces
-2 Serial interfaces
-```
-Lists physical interface types and quantities
-
-**Uptime**:
-```
-ISPRouter uptime is 1 hour, 23 minutes
-```
-Time since last reload/boot
-
-**IOS Image File**:
-```
-System image file is "flash0:c2900-universalk9-mz.SPA.151-4.M4.bin"
-```
-Exact filename and location of IOS
-
-**Flash Memory**:
-```
-500880K bytes of ATA System CompactFlash 0
-```
-~501 MB flash storage available
-
-**Configuration Register**:
-```
-Configuration register is 0x2102
-```
-- **0x2102**: Normal boot (default)
-- **0x2142**: Skip startup-config (password recovery)
-
-**Real-World Use**:
-- Verify IOS version before upgrade
-- Check hardware capabilities
-- Confirm sufficient memory for features
-- Troubleshoot boot problems
-- Verify licensing requirements
-- Document network inventory
 
 ---
 
@@ -987,9 +884,9 @@ show ip route [network]        - Specific network details
 
 **Answer** (Will vary based on your Packet Tracer topology):
 ```
-GigabitEthernet0/0 - UP
-GigabitEthernet0/1 - UP  
-Serial0/0/0 - UP
+GigabitEthernet0/0     209.165.201.1   YES manual up                    up
+Serial0/0/1            209.165.200.226 YES manual up                    up 
+
 ```
 
 **How to determine**:
@@ -999,41 +896,6 @@ ISPRouter# show ip interface brief
 
 Look for interfaces with Status = "up" and Protocol = "up"
 
-**Sample Output**:
-```
-Interface              IP-Address      OK? Method Status    Protocol
-GigabitEthernet0/0     10.1.1.1        YES manual up        up      ← ACTIVE
-GigabitEthernet0/1     192.168.1.1     YES manual up        up      ← ACTIVE
-GigabitEthernet0/2     unassigned      YES unset  admin down down  ← INACTIVE
-Serial0/0/0            209.165.200.225 YES manual up        up      ← ACTIVE
-Serial0/0/1            unassigned      YES unset  admin down down  ← INACTIVE
-```
-
-**Answer for typical topology**:
-- **GigabitEthernet0/0**: Active (connects to LAN 1)
-- **GigabitEthernet0/1**: Active (connects to LAN 2)
-- **Serial0/0/0**: Active (WAN connection)
-- **GigabitEthernet0/2**: Inactive (shutdown)
-- **Serial0/0/1**: Inactive (shutdown)
-
-**Note**: Your specific answer depends on the Packet Tracer file configuration
-
----
-
-## Command Comparison Chart
-
-### Quick Reference Table
-
-| Command | Purpose | Shows IP? | Shows Subnet? | Shows Status? | Detail Level |
-|---------|---------|-----------|---------------|---------------|--------------|
-| show ip interface brief | Quick interface overview | ✅ | ❌ | ✅ | Low |
-| show interfaces | Detailed interface info | ✅ | ✅ | ✅ | Very High |
-| show protocols | Protocol status | ✅ | ✅ | ✅ | Medium |
-| show ip route | Routing table | ✅ | ✅ | ❌ | Medium |
-| show version | System info | ❌ | ❌ | ❌ | High |
-| show flash | Flash contents | ❌ | ❌ | ❌ | Low |
-| show arp | ARP cache | ✅ | ❌ | ❌ | Low |
-| show users | Active sessions | ❌ | ❌ | ❌ | Low |
 
 ---
 
