@@ -3,7 +3,7 @@
 ## Lab Overview
 **Purpose**: Research IT/networking jobs, required certifications, skills, and salary ranges  
 **Goal**: Understand career opportunities and requirements in networking field  
-**Duration**: 30-45 minutes
+
 
 ---
 
