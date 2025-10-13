@@ -1,4 +1,4 @@
-# CCNA Switch Configuration & SSH Security Guide
+# CCNA Switch Configuration 
 
 ## Table of Contents
 1. [Prerequisites & Fundamentals](#prerequisites)
