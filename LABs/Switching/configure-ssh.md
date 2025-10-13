@@ -82,11 +82,6 @@ S1(config-line)# no password
 S1(config-line)# exit
 ```
 
-### Step 4: (Optional) Disable Telnet Globally
-```bash
-S1(config)# transport input ssh
-```
-
 ---
 
 ## ✅ Part 3: Verify SSH Implementation
