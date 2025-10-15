@@ -4,18 +4,6 @@
 
 **Objective:** Configure VLANs on three switches (S1, S2, S3) and assign ports to specific VLANs, including Voice VLAN configuration.
 
-**Topology:**
-```
-PC1 (VLAN 10) ─┐
-PC2 (VLAN 20) ─┤
-PC3 (VLAN 30) ─┴─ S1 ←→ S2 ─┬─ PC4 (VLAN 10)
-                           │   ├─ PC5 (VLAN 20)
-                           │   └─ PC6 (VLAN 30)
-                           │
-                          S3 ─┬─ IP Phone + PC4 (Voice VLAN)
-                              ├─ PC5 (VLAN 20)
-                              └─ PC6 (VLAN 30)
-```
 
 ---
 
@@ -30,13 +18,22 @@ S1> enable
 S1# show vlan brief
 ```
 
-**Expected Output:**
+** Output:**
 ```
+
 VLAN Name                             Status    Ports
 ---- -------------------------------- --------- -------------------------------
-1    default                          active    Fa0/1-24, Gig0/1-2
-
-All ports are in VLAN 1 by default!
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/1, Gig0/2
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
 ```
 
 **Key Command:**
@@ -159,17 +156,27 @@ S1(config-vlan)# end
 S1# show vlan brief
 ```
 
-**Expected Output:**
+**Output:**
 ```
+
 VLAN Name                             Status    Ports
 ---- -------------------------------- --------- -------------------------------
-1    default                          active    Fa0/1-24, Gig0/1-2
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/1, Gig0/2
 10   Faculty/Staff                    active    
 20   Students                         active    
-30   Guest(Default)                   active    
+30   Guest                            active    
 99   Management&Native                active    
 150  VOICE                            active    
-```
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
 
 **Alternative Commands:**
 ```cisco
@@ -280,13 +287,21 @@ S2# show vlan brief
 ```
 VLAN Name                             Status    Ports
 ---- -------------------------------- --------- -------------------------------
-1    default                          active    Fa0/1-5, Fa0/7-10, Fa0/12-17
-                                                Fa0/19-24, Gig0/1-2
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/5, Fa0/7, Fa0/8, Fa0/9
+                                                Fa0/10, Fa0/12, Fa0/13, Fa0/14
+                                                Fa0/15, Fa0/16, Fa0/17, Fa0/19
+                                                Fa0/20, Fa0/21, Fa0/22, Fa0/23
+                                                Fa0/24, Gig0/1, Gig0/2
 10   Faculty/Staff                    active    Fa0/11
 20   Students                         active    Fa0/18
-30   Guest(Default)                   active    Fa0/6
+30   Guest                            active    Fa0/6
 99   Management&Native                active    
 150  VOICE                            active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
 ```
 
 ---
@@ -340,14 +355,18 @@ S3(config-if)# end
 S3# show interfaces fa0/11 switchport
 ```
 
-**Expected Output:**
+**Output:**
 ```
 Name: Fa0/11
 Switchport: Enabled
 Administrative Mode: static access
 Operational Mode: static access
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: native
+Negotiation of Trunking: Off
 Access Mode VLAN: 10 (Faculty/Staff)
-Voice VLAN: 150 (VOICE)  ← Voice VLAN configured!
+Trunking Native Mode VLAN: 1 (default)
+Voice VLAN: 150
 ```
 
 ---
@@ -359,17 +378,25 @@ Voice VLAN: 150 (VOICE)  ← Voice VLAN configured!
 S2# show vlan brief
 ```
 
-**Output Analysis:**
+**Analysis:**
 ```
 VLAN Name                             Status    Ports
 ---- -------------------------------- --------- -------------------------------
-1    default                          active    Fa0/1-5, Fa0/7-10, Fa0/12-17
-                                                Fa0/19-24, Gig0/1-2  ← Trunk ports!
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/5, Fa0/7, Fa0/8, Fa0/9
+                                                Fa0/10, Fa0/12, Fa0/13, Fa0/14
+                                                Fa0/15, Fa0/16, Fa0/17, Fa0/19
+                                                Fa0/20, Fa0/21, Fa0/22, Fa0/23
+                                                Fa0/24, Gig0/1, Gig0/2
 10   Faculty/Staff                    active    Fa0/11
 20   Students                         active    Fa0/18
-30   Guest(Default)                   active    Fa0/6
+30   Guest                            active    Fa0/6
 99   Management&Native                active    
-150  VOICE                            active
+150  VOICE                            active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
 ```
 
 **Test Connectivity:**
@@ -428,9 +455,9 @@ S2(config-if)# switchport trunk allowed vlan 10,20,30,99
 S2(config-if)# end
 ```
 
-**On S3 (if connected to S1 or S2):**
+**On S3 :**
 ```cisco
-S3(config)# interface gigabitEthernet 0/1
+S3(config)# interface gigabitEthernet 0/2
 S3(config-if)# switchport mode trunk
 S3(config-if)# switchport trunk native vlan 99
 S3(config-if)# switchport trunk allowed vlan 10,20,30,99,150
