@@ -4,26 +4,7 @@
 
 This lab focuses on verifying an existing OSPF network using various show commands. You'll analyze neighbor relationships, routing tables, and OSPF parameters, then add a new branch office LAN to the existing network.
 
-## Network Topology
 
-### Main Network (Enterprise)
-- **R1**: Enterprise router with Internet access (G0/1: 64.100.54.6/30)
-- **R2**: Enterprise router (central hub)
-- **R3**: Branch office router
-- **R4**: New branch office router (to be added)
-
-### Connections
-- **R1** ↔ **R2**: Serial link via 172.16.3.0/30
-- **R1** ↔ **R3**: Serial link via 192.168.10.4/30
-- **R2** ↔ **R3**: Serial link via 192.168.10.8/30
-- **R3** ↔ **R4**: Will connect via Ethernet (192.168.1.0/24)
-- **R1** → **ISP**: G0/1 (64.100.54.4/30)
-
-### Access Credentials
-- **Enterprise routers (R1, R2)**: Username: `BranchAdmin`, Password: `Branch1234`
-- **Branch routers (R3, R4)**: Full access (enable mode)
-
----
 
 ## Understanding the Lab Structure
 
@@ -90,25 +71,6 @@ Password: Branch1234
 R1# show ip route
 ```
 
-**Expected Output:**
-```
-Gateway of last resort is 172.16.3.2 to network 0.0.0.0
-
-     172.16.0.0/16 is variably subnetted, 5 subnets, 3 masks
-C       172.16.1.0/24 is directly connected, GigabitEthernet0/0
-L       172.16.1.1/32 is directly connected, GigabitEthernet0/0
-O       172.16.2.0/24 [110/65] via 172.16.3.2, 00:02:18, Serial0/0/0
-C       172.16.3.0/30 is directly connected, Serial0/0/0
-L       172.16.3.1/32 is directly connected, Serial0/0/0
-O       192.168.1.0/24 [110/65] via 192.168.10.6, 00:02:18, Serial0/0/1
-     192.168.10.0/24 is variably subnetted, 3 subnets, 2 masks
-C       192.168.10.4/30 is directly connected, Serial0/0/1
-L       192.168.10.5/32 is directly connected, Serial0/0/1
-O       192.168.10.8/30 [110/128] via 172.16.3.2, 00:02:18, Serial0/0/0
-                        [110/128] via 192.168.10.6, 00:02:18, Serial0/0/1
-O*E2    0.0.0.0/0 [110/1] via 172.16.3.2, 00:02:18, Serial0/0/0
-```
-
 ---
 
 ### Answer These Questions:
@@ -165,12 +127,6 @@ O*E2    0.0.0.0/0 [110/1] via 172.16.3.2, 00:05:32, Serial0/0/0
 R1# show ip ospf neighbor
 ```
 
-**Expected Output:**
-```
-Neighbor ID      Pri   State           Dead Time   Address         Interface
-192.168.10.6     0     FULL/  -        00:00:38    192.168.10.6    Serial0/0/1
-172.16.3.2       0     FULL/  -        00:00:31    172.16.3.2      Serial0/0/0
-```
 
 ---
 
@@ -181,16 +137,16 @@ Neighbor ID      Pri   State           Dead Time   Address         Interface
 **Answer: R2 and R3**
 
 **Details:**
-- **R2**: Address 172.16.3.2 (Neighbor ID 172.16.3.2)
-- **R3**: Address 192.168.10.6 (Neighbor ID 192.168.10.6)
+- **R2**: 2.2.2.2
+- **R3**: 3.3.3.3
 
 ---
 
 **Q5: What are the router IDs and state of the routers shown in the command output?**
 
 **Answer:**
-- **R2**: Router ID = 172.16.3.2, State = FULL
-- **R3**: Router ID = 192.168.10.6, State = FULL
+- **R2**: Router ID = 2.2.2.2, State = FULL
+- **R3**: Router ID = 3.3.3.3, State = FULL
 
 **Understanding the states:**
 - **FULL** means adjacency is completely established
@@ -280,23 +236,6 @@ R2# show ip route
 R2# show ip ospf interface g0/0
 ```
 
-**Expected Output:**
-```
-GigabitEthernet0/0 is up, line protocol is up
-  Internet address is 172.16.2.1/24, Area 0
-  Process ID 1, Router ID 172.16.3.2, Network Type BROADCAST, Cost: 1
-  Transmit Delay is 1 sec, State DR, Priority 1
-  Designated Router (ID) 172.16.3.2, Interface address 172.16.2.1
-  No backup designated router on this network
-  Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5
-  Hello due in 00:00:03
-  Index 1/1, flood queue length 0
-  Next 0x0(0)/0x0(0)
-  Last flood scan length is 0, maximum is 0
-  Last flood scan time is 0 msec, maximum is 0 msec
-  Neighbor Count is 0, Adjacent neighbor count is 0
-  Suppress hello for 0 neighbor(s)
-```
 
 ---
 
@@ -374,25 +313,6 @@ C:\> ping 192.168.10.6
 R3# show ip protocols
 ```
 
-**Expected Output:**
-```
-Routing Protocol is "ospf 1"
-  Outgoing update filter list for all interfaces is not set
-  Incoming update filter list for all interfaces is not set
-  Router ID 192.168.10.6
-  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
-  Maximum path: 4
-  Routing for Networks:
-    192.168.1.0 0.0.0.255 area 0
-    192.168.10.4 0.0.0.3 area 0
-    192.168.10.8 0.0.0.3 area 0
-  Routing Information Sources:
-    Gateway         Distance      Last Update
-    172.16.3.1           110      00:15:23
-    172.16.3.2           110      00:15:23
-  Distance: (default is 110)
-```
-
 ---
 
 **Q11: Router R3 is routing for which networks?**
@@ -414,37 +334,6 @@ Look for the "Routing for Networks:" section in `show ip protocols` output.
 
 ```bash
 R3# show ip ospf neighbor detail
-```
-
-**Expected Output:**
-```
-Neighbor 172.16.3.1, interface address 192.168.10.5
-    In the area 0 via interface Serial0/0/0
-    Neighbor priority is 0, State is FULL, 6 state changes
-    DR is 0.0.0.0 BDR is 0.0.0.0
-    Options is 0x12 in Hello (E-bit, L-bit)
-    Options is 0x52 in DBD (E-bit, L-bit, O-bit)
-    LLS Options is 0x1 (LR)
-    Dead timer due in 00:00:32
-    Neighbor is up for 00:17:45
-    Index 1/1, retransmission queue length 0, number of retransmission 1
-    First 0x0(0)/0x0(0) Next 0x0(0)/0x0(0)
-    Last retransmission scan length is 1, maximum is 1
-    Last retransmission scan time is 0 msec, maximum is 0 msec
-
-Neighbor 172.16.3.2, interface address 192.168.10.9
-    In the area 0 via interface Serial0/0/1
-    Neighbor priority is 0, State is FULL, 6 state changes
-    DR is 0.0.0.0 BDR is 0.0.0.0
-    Options is 0x12 in Hello (E-bit, L-bit)
-    Options is 0x52 in DBD (E-bit, L-bit, O-bit)
-    LLS Options is 0x1 (LR)
-    Dead timer due in 00:00:35
-    Neighbor is up for 00:17:48
-    Index 2/2, retransmission queue length 0, number of retransmission 1
-    First 0x0(0)/0x0(0) Next 0x0(0)/0x0(0)
-    Last retransmission scan length is 1, maximum is 1
-    Last retransmission scan time is 0 msec, maximum is 0 msec
 ```
 
 ---
@@ -499,15 +388,6 @@ R4 is pre-configured but not yet connected to the network.
 R4# show run | begin router ospf
 ```
 
-**Expected Output:**
-```
-router ospf 1
- router-id 192.168.11.1
- passive-interface GigabitEthernet0/0/1
- network 192.168.1.0 0.0.0.255 area 0
- network 192.168.11.0 0.0.0.255 area 0
-!
-```
 
 ---
 
@@ -557,7 +437,7 @@ R4# show ip ospf neighbor
 **Expected Output:**
 ```
 Neighbor ID      Pri   State           Dead Time   Address         Interface
-192.168.10.6     1     FULL/BDR        00:00:35    192.168.1.1     GigabitEthernet0/0/0
+3.3.3.3     1     FULL/BDR        00:00:35    192.168.1.1     GigabitEthernet0/0/0
 ```
 
 ---
@@ -582,14 +462,6 @@ Neighbor ID      Pri   State           Dead Time   Address         Interface
 
 ```bash
 R3# show ip ospf neighbor
-```
-
-**Expected Output:**
-```
-Neighbor ID      Pri   State           Dead Time   Address         Interface
-192.168.11.1     1     FULL/DR         00:00:34    192.168.1.2     GigabitEthernet0/0
-172.16.3.1       0     FULL/  -        00:00:38    192.168.10.5    Serial0/0/0
-172.16.3.2       0     FULL/  -        00:00:31    192.168.10.9    Serial0/0/1
 ```
 
 ---
@@ -636,11 +508,6 @@ Neighbor ID      Pri   State           Dead Time   Address         Interface
 **To verify who is DR:**
 ```bash
 R3# show ip ospf interface g0/0
-```
-Look for:
-```
-Designated Router (ID) 192.168.11.1, Interface address 192.168.1.2
-Backup Designated router (ID) 192.168.10.6, Interface address 192.168.1.1
 ```
 
 ---
@@ -809,87 +676,3 @@ undebug all                      # Disable all debugging
 
 ---
 
-## Troubleshooting Guide
-
-### Problem: Cannot Login to R1 or R2
-
-**Symptoms:**
-- Login fails with wrong username/password
-
-**Solution:**
-```
-Username: BranchAdmin
-Password: Branch1234
-```
-- Username is case-sensitive
-- You only get privileged EXEC, not config mode
-
----
-
-### Problem: No OSPF Neighbors Showing
-
-**Checklist:**
-
-1. **Verify interface is up:**
-   ```bash
-   show ip interface brief
-   ```
-
-2. **Check OSPF is enabled on interface:**
-   ```bash
-   show ip ospf interface
-   ```
-
-3. **Verify network statement includes interface:**
-   ```bash
-   show ip protocols
-   ```
-
-4. **Check for passive interface:**
-   ```bash
-   show ip ospf interface | include Passive
-   ```
-
-5. **Verify OSPF area matches:**
-   - Both sides must be in same area
-
-6. **Check timers match:**
-   ```bash
-   show ip ospf interface s0/0/0 | include Timer
-   ```
-
----
-
-### Problem: R4 Not Becoming DR
-
-**Why this happens:**
-- Elections are NOT preemptive
-- R3 may have become DR first
-- R4 joins as BDR or DROTHER
-
-**To force re-election:**
-```bash
-R3# clear ip ospf process
-R4# clear ip ospf process
-```
-
-Wait 40 seconds for new election.
-
----
-
-### Problem: Routes Not Appearing in Routing Table
-
-**Checklist:**
-
-1. **Verify OSPF neighbors are FULL:**
-   ```bash
-   show ip ospf neighbor
-   ```
-
-2. **Check OSPF database:**
-   ```bash
-   show ip ospf database
-   ```
-
-3. **Verify area consistency:**
-   - All interfaces must be in Area 0 
